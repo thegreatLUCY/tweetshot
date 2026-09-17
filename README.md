@@ -1,161 +1,267 @@
-# TweetShot — Image Editor for X/Twitter
+<p align="center">
+  <img src="docs/img/icon-256.png" width="104" height="104" alt="TweetShot">
+</p>
 
-Chrome/Edge (MV3) extension. Edit photos **inside the X.com composer**: blur or
-pixelate, cover sensitive details, annotate, crop, straighten and enhance — then
-one click to put the result back in the tweet.
+<h1 align="center">TweetShot</h1>
 
-Everything runs locally on `<canvas>`. No uploads, no API keys, no network calls.
+<p align="center">
+  <strong>An image editor that lives inside the X/Twitter composer.</strong><br>
+  Blur a face, cover a plate, add a caption, crop — then post.<br>
+  Everything runs on your device. No uploads, no accounts, no network requests.
+</p>
 
-## Features
+<p align="center">
+  <a href="https://github.com/thegreatLUCY/tweetshot/actions/workflows/ci.yml"><img src="https://github.com/thegreatLUCY/tweetshot/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI"></a>
+  <img src="https://img.shields.io/badge/version-1.0.0-1d9bf0" alt="version 1.0.0">
+  <img src="https://img.shields.io/badge/manifest-v3-1d9bf0" alt="Manifest V3">
+  <img src="https://img.shields.io/badge/tests-28%20passing-2eb872" alt="28 tests passing">
+  <img src="https://img.shields.io/badge/uploads-none-2eb872" alt="No uploads">
+  <img src="https://img.shields.io/badge/network%20requests-0-2eb872" alt="Zero network requests">
+</p>
 
-**Privacy**
-- 🫧 **Blur brush** — gaussian or pixelate, size + strength, click for a single dab
-- 🙈 **Blur faces** — one-tap detection where the browser supports `FaceDetector`
-  (when it is unavailable the button says so and points you at the brush)
+<p align="center">
+  <img src="docs/img/01-blur.png" width="900" alt="The TweetShot editor open over the X composer with a face blurred">
+  <br>
+  <sub>The editor opens over the composer. Blur a face, then <code>Use in tweet</code> — the edited image lands in your post.</sub>
+</p>
 
-**Mark up**
-- 🅣 **Text** — captions with colour, size and an optional chip
-- ➤ **Arrow**, ▭ **Box**, ✎ **Draw** — freehand and shapes; Box has an
-  Outline / Filled toggle, so a filled box doubles as a solid bar
-- Grab any mark to move it, `Delete selected` to remove it, with a dashed outline
-  showing what is selected
-- Everything is stored in source space, so marks follow the photo when you crop or rotate
+---
 
-**Frame**
-- ✂️ **Crop** — free drag plus `1:1`, `4:5`, `16:9`, `3:2`, `4:3`, `9:16`, `1.91:1`
-- ✨ **Auto crop** — largest centred crop of the chosen shape
-- 🔄 **Rotate** — quarter turns, flip, and a fine angle slider
-- 📐 **Fit corners** — removes the transparent wedges left by straightening
-- 🎚️ **Adjust** — brightness, contrast, saturation, grayscale, sepia, hue + presets
+## Why this exists
 
-**Workflow**
-- ↔️ **Compare** — drag the ball on the divider to scrub, or side-by-side. It is
-  an overlay, not a mode: you can keep editing while it is open, and the original
-  side ignores your filters, so the two really do differ. Hold `O` to peek too.
-- ↩ **Undo/redo** for every edit
-- 🧪 **Recipes** — save a look and reapply it to other images
-- 💾 **Resume** — an unfinished edit in the full editor survives a reload
-- 📏 **Export intelligence** — live size estimate and a one-click "fit under 5 MB" for X
-- 📦 **Multi-image batches** — edit several photos, inject them all at once
-- 🖱 **Right-click** any image on X → *Edit this image with TweetShot*
-- 🗂 Pasting an image or dragging one onto the editor both load it
+Posting a photo usually means leaving the site: export, open a paint app or a
+"blur your photo online" website, upload your face to a stranger's server, edit,
+come back, re-upload. And then the file is 6 MB and the composer rejects it.
 
-**Shortcuts**: `Ctrl/⌘+Z` undo · `Ctrl/⌘+Shift+Z` redo · `Ctrl/⌘+S` save ·
-`Ctrl/⌘+Enter` apply · `[` `]` brush size · `1`–`6` tools · `O` compare-original ·
-`C` cycle compare · `Esc` close
+TweetShot removes all of that. The editor is *inside* the composer, and the
+image never leaves your machine.
+
+## Everything it does
+
+<table>
+<tr>
+<td width="50%" valign="top">
+<p>🫧 <strong>Blur &amp; pixelate</strong><br>
+A brush for faces, plates and anything else that shouldn't be readable. Size and
+strength are adjustable; a single click is a single dab; fast drags interpolate
+instead of leaving dots.</p>
+
+<p>🙈 <strong>Blur faces</strong><br>
+One-tap detection where the browser supports <code>FaceDetector</code>. Where it
+doesn't, the button tells you so and points at the brush — no dead controls.</p>
+
+<p>✍️ <strong>Captions &amp; marks</strong><br>
+Text with an optional background chip, arrows, outline or filled boxes, and
+freehand drawing. Grab any mark to move it, <code>Delete selected</code> to remove
+it, with a dashed outline showing what's selected.</p>
+</td>
+
+<td width="50%" valign="top">
+<p>✂️ <strong>Crop &amp; straighten</strong><br>
+Free drag plus <code>1:1</code>, <code>4:5</code>, <code>16:9</code>,
+<code>3:2</code>, <code>4:3</code>, <code>9:16</code> and <code>1.91:1</code>.
+<em>Auto</em> picks the largest crop of the shape you chose; <em>Fit corners</em>
+trims the empty wedges straightening leaves behind.</p>
+
+<p>🎚️ <strong>Adjust</strong><br>
+Brightness, contrast, saturation, grayscale, sepia and hue, with presets. Save a
+look as a <strong>recipe</strong> and reuse it on the next photo.</p>
+
+<p>↔️ <strong>Compare</strong><br>
+Drag the divider for a real before/after — the original side ignores your
+filters, so the two actually differ — or view them side by side.</p>
+
+<p>📏 <strong>Never too big</strong><br>
+A live export size estimate and one-click <strong>fit under 5 MB</strong>, so a
+photo is never rejected for being too large.</p>
+</td>
+</tr>
+</table>
+
+**Workflow extras:** multi-image batches that inject together · right-click any
+image → *Edit this image with TweetShot* · paste or drag an image straight in ·
+undo/redo on every edit · an unfinished edit in the full-page editor survives a
+reload · light and dark themes · keyboard shortcuts throughout.
+
+## Screenshots
+
+<table>
+  <tr>
+    <td width="50%"><img src="docs/img/02-compare.png" alt="Dragging the compare divider across the photo"><br><sub><b>Drag to compare</b> — before/after, live, while you keep editing</sub></td>
+    <td width="50%"><img src="docs/img/03-mark.png" alt="A text caption with a chip and a red arrow on the photo"><br><sub><b>Captions, arrows and boxes</b> — drag any mark to reposition</sub></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="docs/img/04-crop.png" alt="A 4:5 crop selection with alignment guides and ruler highlight"><br><sub><b>Crop for X</b> — presets, guides and Auto</sub></td>
+    <td width="50%"><img src="docs/img/06-export.png" alt="The export panel with a live file size estimate"><br><sub><b>Live size estimate</b> — and one-click fit under 5 MB</sub></td>
+  </tr>
+</table>
+
+<p align="center">
+  <img src="docs/img/05-payoff.png" width="900" alt="The edited photo attached in the tweet composer, ready to post">
+  <br>
+  <sub>…and the result lands directly in the composer.</sub>
+</p>
 
 ## Design
 
 The editor is built as a **calibration plate** rather than a generic toolbar: the
 photo sits on a darkroom backdrop with print registration marks and live pixel
-rulers, and those rulers highlight your crop/cover selection in real time.
+rulers, and those rulers highlight your crop and blur selection in real time.
 
 - **Type** — Archivo for equipment-style labels, IBM Plex Sans for the interface,
   IBM Plex Mono for every number (dimensions, slider values, ruler ticks).
-- **Color** — a deep blue-black darkroom dark with X-blue as the single
-  functional accent; safelight red is reserved for redaction. A "paperproof"
-  light theme mirrors it and follows `prefers-color-scheme`.
-- **Fonts are bundled locally** (`fonts/`, ~100 KB) and registered with the
-  FontFace API, so the extension still makes zero network calls and is immune to
-  the host page's CSP.
+- **Color** — a deep blue-black darkroom dark with X-blue as the single functional
+  accent; a "paperproof" light theme mirrors it and follows `prefers-color-scheme`.
+- **Fonts are bundled locally** (~100 KB, both families SIL OFL) and registered
+  with the FontFace API, so the extension makes zero network requests and stays
+  immune to the host page's CSP.
 
-## Project layout
+---
 
-```
-manifest.json               # Chrome / Edge
-manifest.firefox.json       # Firefox variant (see below)
-background.js               # service worker: context menu, opens the editor
-lib/editor-core.js          # canvas engine (no deps, unit-tested)
-lib/editor-ui.js            # editor card: tools, pointer, undo, recipes, export
-lib/editor-ui.css           # shared styles (darkroom + paperproof themes)
-content/content.js          # X.com detection, batching, injection
-editor/editor.html|css|js   # full-page editor (shell + resume + ?src=)
-popup/popup.html|js
-_locales/en/messages.json   # UI strings (chrome.i18n)
-fonts/*.woff2               # bundled Archivo / IBM Plex (no network)
-icons/icon{16,48,128}.png
-test/core.test.js           # node:test coverage for the core math
+## Install
+
+**From source (today)** — the extension isn't on the Chrome Web Store yet:
+
+```bash
+git clone https://github.com/thegreatLUCY/tweetshot.git
 ```
 
-## Install (dev)
-
-**Chrome / Edge**
-1. `chrome://extensions` → enable **Developer mode** → **Load unpacked** → select this folder
-2. Go to `https://x.com/compose/post`, attach one or more photos
-3. Click **✎ Edit** on a preview (or **Edit photo** in the toolbar)
+1. Open `chrome://extensions` and enable **Developer mode**
+2. **Load unpacked** → select the cloned folder
+3. Go to `https://x.com/compose/post`, attach a photo, click **✎ Edit**
 4. Edit → **Use in tweet**
 
-**Firefox** — MV3 support differs (event pages instead of a service worker), so
-build the Firefox copy first:
+Reload the extension *and hard-refresh the X tab* after pulling changes, so the
+content script is re-injected.
+
+**Firefox** — MV3 differs (event pages instead of a service worker):
 
 ```bash
 cp manifest.firefox.json manifest.json   # in a copy of the folder
 ```
 
-Then load it via `about:debugging#/runtime/this-firefox` → **Load Temporary Add-on**.
-The Firefox manifest is provided but has **not been verified in a real Firefox
+Then `about:debugging#/runtime/this-firefox` → **Load Temporary Add-on**. The
+Firefox manifest is provided but has **not been verified in a real Firefox
 build** — treat it as a starting point.
 
-Reload the extension *and the X tab* after pulling changes so the content script
-is re-injected.
+## Privacy
+
+**No uploads, no accounts, no analytics, no ads, and no network requests at all.**
+Every edit happens on your device with the browser's `<canvas>` API; the fonts
+are bundled inside the extension. Saving re-encodes the image, which strips EXIF
+metadata — including GPS location.
+
+It runs on `x.com` and `twitter.com` and nowhere else.
+
+📄 [Full privacy policy](https://thegreatlucy.github.io/tweetshot/privacy.html) ·
+🌐 [Landing page](https://thegreatlucy.github.io/tweetshot/)
 
 ## Development
 
 ```bash
-npm test            # unit tests for geometry, crop, transforms, annotations, fitting
-npm run lint        # syntax-check every script
-npm run test:browser   # end-to-end smoke test for the content script
-npm run preflight   # Chrome Web Store blockers (manifest, icons, remote code, hosts)
-npm run build       # -> dist/tweetshot-<version>.zip
-npm run test:artifact  # build, then run the browser suite against the packaged zip
+npm test              # unit tests: geometry, crop, transforms, marks, fitting
+npm run lint          # syntax-check every script
+npm run test:browser  # end-to-end: boots a fake composer, drives every entry point
+npm run preflight     # Chrome Web Store blockers (manifest, icons, remote code)
+npm run build         # -> dist/tweetshot-<version>.zip
+npm run test:artifact # build, then run the browser suite against the packaged zip
+npm run shots         # regenerate store screenshots at 1280x800
 ```
 
-`test:browser` boots a fake X composer in a real browser and drives every way
-into the editor — the toolbar picker, the composer's own file input, the ✎ Edit
-badge, and a simulated invalidated extension context. It needs `playwright-cli`
-on your PATH and skips cleanly without it. Use it whenever you touch
-`content/content.js`: a single undefined reference there makes the whole editor
-fail silently on the live site, which unit tests cannot catch.
+No dependencies. The engine, the UI and all the tooling are dependency-free, so
+`npm install` does nothing on purpose.
 
-## How the injection works
+### The browser harness matters
+
+`npm run test:browser` is not a nicety. A single undefined reference in
+`content/content.js` makes the whole editor fail *silently* on the live site, and
+unit tests cannot see it. The harness serves a fake composer, injects the real
+scripts and drives every way in — the toolbar picker, the composer's own file
+input, the ✎ Edit badge, multi-image batches, and a simulated invalidated
+extension context — then asserts the editor opens and that **Use in tweet**
+actually attaches rather than downloading.
+
+There's a second harness page, `composer-portal.html`, where the media input is
+hoisted outside the composer. That is how X really behaves, and it is the
+regression guard for the bug that made saving download instead of attach.
+
+### Project layout
+
+```
+manifest.json               Chrome / Edge
+manifest.firefox.json       Firefox variant
+background.js               service worker: context menu, opens the editor
+lib/editor-core.js          canvas engine (pure, unit-tested)
+lib/editor-ui.js            editor card: tools, pointer, undo, recipes, export
+lib/editor-ui.css           darkroom + paperproof themes
+content/content.js          X.com detection, batching, injection
+editor/editor.html|css|js   full-page editor (shell + resume + ?src=)
+popup/                      toolbar popup
+_locales/en/messages.json   UI strings (chrome.i18n)
+fonts/                      bundled Archivo / IBM Plex + their OFL licence
+test/core.test.js           unit tests
+test/harness/               browser harness + test fixtures
+scripts/                    preflight, build, artifact test, screenshots, icons
+.github/workflows/ci.yml    lint + unit tests + preflight on every push
+docs/                       GitHub Pages site (landing + privacy policy)
+store/                      submitted screenshots and promo tiles
+```
+
+<details>
+<summary><b>How the injection works</b></summary>
 
 - The content script watches `input[data-testid="fileInput"]` and composer previews.
 - File selection is intercepted in the **capture phase**, before X's React
   handler, so X never uploads the untouched original.
-- On save the edited canvas becomes a `File` and is pushed into the composer's
-  media input (which X often hoists outside the composer, so the lookup falls
-  back to the known testid and then to any image input), dispatching
-  `input` + `change`; if no input can be reached it falls back to a synthetic
-  paste, then to the clipboard. It never silently downloads.
-- Editing an attached image removes the matching preview afterwards (found
-  relative to that image, not by a global selector).
-- The image is also copied to the clipboard as a backup.
+- On save, the edited canvas becomes a `File` and is pushed into the composer's
+  media input, dispatching `input` + `change`. X often **hoists that input outside
+  the composer subtree**, so the lookup falls back from composer-scoped → known
+  testid → any image input, and verifies an actual preview appeared before
+  claiming success.
+- If no input can be reached it dispatches a synthetic **paste** (X accepts pasted
+  images), and finally copies to the clipboard. **It never silently downloads.**
+- Editing an already-attached image removes the matching preview afterwards,
+  found relative to that image rather than by a global selector.
 
 If X changes its DOM (`data-testid` values), update `FILE_SEL` / `composerScope`
 in `content/content.js`.
 
-## Privacy
+</details>
 
-All processing is client-side via `<canvas>`. Re-encoding drops EXIF metadata
-(including GPS), nothing is uploaded, and no analytics or remote fonts are used.
-
-## Releasing
+<details>
+<summary><b>Releasing</b></summary>
 
 ```bash
-npm run lint && npm test      # code health
-npm run preflight             # store blockers
-npm run test:artifact         # proves the packaged build works
-npm run build                 # dist/tweetshot-<version>.zip  -> upload this
+npm run lint && npm test   # code health
+npm run preflight          # store blockers
+npm run test:artifact      # proves the packaged build works
+npm run build              # dist/tweetshot-<version>.zip  -> upload this
 ```
 
-Then bump the version in `manifest.json`, `manifest.firefox.json` and
-`package.json` before each upload — the store rejects a version it has already
-seen. Copy for the store listing (name, descriptions, permission justifications,
-data-usage answers, reviewer test steps) lives in **[STORE_LISTING.md](STORE_LISTING.md)**,
-and the privacy policy to host is **[PRIVACY.md](PRIVACY.md)**.
+Bump the version in `manifest.json`, `manifest.firefox.json` and `package.json`
+before each upload — the store rejects a version it has already seen.
 
-## Next ideas
+Store copy (name, descriptions, permission justifications, data-usage answers,
+reviewer test steps) lives in **[STORE_LISTING.md](STORE_LISTING.md)**; the
+privacy policy to host is in **[docs/privacy.html](docs/privacy.html)**.
 
-- Text/shape alignment guides and multi-select for marks
-- Background removal and perspective correction
-- Trim/export presets for video stills
+</details>
+
+## Roadmap
+
+- Face auto-blur that works on desktop Chrome, via a small bundled model
+- Text and shape alignment guides
+- Background removal
+- Trim presets for video stills
+
+## Licence
+
+No licence has been chosen yet, so the code is **all rights reserved** by
+default. The bundled **Archivo** and **IBM Plex** fonts are licensed separately
+under the SIL Open Font License — see [`fonts/LICENSE.txt`](fonts/LICENSE.txt).
+
+---
+
+<p align="center">
+  <sub>TweetShot is an independent project and is not affiliated with X Corp.</sub>
+</p>

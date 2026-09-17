@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  verify:
+    name: Lint, test and preflight
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # No dependencies — the engine, UI and tooling are all dependency-free.
+      - name: Syntax-check every script
+        run: npm run lint
+
+      - name: Unit tests (canvas engine geometry, crop, transforms, marks)
+        run: npm test
+
+      - name: Chrome Web Store preflight
+        run: npm run preflight

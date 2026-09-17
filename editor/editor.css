@@ -1,0 +1,63 @@
+/* Full-page shell for the shared editor UI.
+   Fonts are injected by lib/editor-ui.js; this file only styles the page chrome. */
+:root { color-scheme: light dark; }
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Plex UI', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: Canvas;
+  color: CanvasText;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 14px 22px;
+  border-bottom: 1px solid color-mix(in srgb, CanvasText 12%, transparent);
+  position: sticky; top: 0; background: Canvas; z-index: 10;
+}
+.page-head .brand { display: flex; align-items: baseline; gap: 8px; }
+.page-head .brand b {
+  font-family: 'Archivo', 'Plex UI', sans-serif;
+  font-weight: 700; font-size: 15px; letter-spacing: -.01em;
+}
+.page-head .brand span { opacity: .55; font-size: 11.5px; }
+
+.pbtn {
+  border: 1px solid color-mix(in srgb, CanvasText 22%, transparent);
+  background: transparent; color: inherit; border-radius: 9px;
+  padding: 8px 15px; font-family: inherit; font-size: 12.5px; font-weight: 600; cursor: pointer;
+  transition: border-color .14s ease, color .14s ease, transform .1s ease;
+}
+.pbtn:hover { border-color: #1d9bf0; color: #1d9bf0; }
+.pbtn:active { transform: scale(.97); }
+.pbtn.primary { background: #1d9bf0; border-color: #1d9bf0; color: #fff; }
+.pbtn.primary:hover { color: #fff; filter: brightness(1.07); }
+
+main { padding: 0 0 48px; }
+
+.empty { display: flex; align-items: center; justify-content: center; min-height: 62vh; }
+.empty-card { text-align: center; max-width: 430px; padding: 32px; }
+.empty-card h1 {
+  font-family: 'Archivo', 'Plex UI', sans-serif;
+  font-weight: 700; font-size: 24px; letter-spacing: -.02em; margin: 0 0 10px;
+}
+.empty-card p { opacity: .65; margin: 0 0 18px; font-size: 13.5px; }
+.empty-card small {
+  display: block; margin-top: 16px; opacity: .5; font-size: 11.5px; line-height: 1.6;
+  font-family: 'Plex Data', ui-monospace, monospace;
+}
+
+.resume {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  max-width: 1020px; margin: 16px auto 0; padding: 10px 16px;
+  border: 1px solid color-mix(in srgb, CanvasText 14%, transparent);
+  border-radius: 12px;
+}
+.resume span { font-family: 'Plex Data', ui-monospace, monospace; font-size: 11.5px; opacity: .75; flex: 1; min-width: 200px; }
+
+.empty-error { margin-top: 14px !important; color: #e5484d !important; opacity: 1 !important; }
+
+body.has-image .empty { display: none; }

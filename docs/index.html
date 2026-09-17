@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TweetShot — Image Editor for X/Twitter</title>
+<meta name="description" content="Blur a face, cover a plate, add a caption and crop — right inside the X/Twitter composer. Everything runs on your device. No uploads.">
+<meta property="og:title" content="TweetShot — Image Editor for X/Twitter">
+<meta property="og:description" content="Edit photos before you post, without leaving the composer. Blur, crop, caption, compare. 100% on your device.">
+<meta property="og:image" content="img/hero.png">
+<link rel="icon" href="img/icon-128.png">
+<style>
+  @font-face { font-family: 'Archivo'; font-weight: 100 900; font-display: swap; src: url('fonts/archivo-var.woff2') format('woff2'); }
+  @font-face { font-family: 'Plex UI'; font-weight: 100 700; font-display: swap; src: url('fonts/ibm-plex-sans-var.woff2') format('woff2'); }
+
+  :root {
+    --ink: #0a0d12;
+    --card: #10141c;
+    --line: #232b37;
+    --text: #e9edf3;
+    --muted: #8b95a7;
+    --blue: #1d9bf0;
+    --display: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --ui: 'Plex UI', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--ink); color: var(--text); font-family: var(--ui);
+    font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--blue); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { width: min(1080px, 92vw); margin: 0 auto; }
+
+  header.hero {
+    padding: 72px 0 56px; text-align: center;
+    background:
+      radial-gradient(60% 70% at 50% 0%, rgba(29,155,240,.16), transparent 70%),
+      var(--ink);
+    border-bottom: 1px solid var(--line);
+  }
+  .logo { width: 88px; height: 88px; border-radius: 22px; display: block; margin: 0 auto 20px; }
+  h1 {
+    font-family: var(--display); font-weight: 700; letter-spacing: -.02em;
+    font-size: clamp(34px, 6vw, 52px); margin: 0 0 12px;
+  }
+  .tagline { color: var(--muted); font-size: clamp(16px, 2.2vw, 19px); margin: 0 auto 28px; max-width: 620px; }
+  .cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; border-radius: 10px; padding: 12px 20px;
+    font-weight: 600; font-size: 15px; border: 1px solid var(--line); color: var(--text);
+  }
+  .btn:hover { text-decoration: none; border-color: #3a4553; }
+  .btn.primary { background: var(--blue); border-color: var(--blue); color: #fff; }
+  .btn.primary:hover { filter: brightness(1.08); }
+  .note { color: var(--muted); font-size: 13.5px; margin-top: 14px; }
+
+  section { padding: 64px 0; border-bottom: 1px solid var(--line); }
+  h2 { font-family: var(--display); font-weight: 700; font-size: 26px; letter-spacing: -.01em; margin: 0 0 8px; }
+  .sub { color: var(--muted); margin: 0 0 32px; }
+
+  .grid { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 22px; }
+  .card h3 { font-family: var(--display); font-size: 16px; margin: 0 0 6px; }
+  .card p { color: var(--muted); font-size: 14.5px; margin: 0; }
+  .card .ico { font-size: 20px; margin-bottom: 10px; }
+
+  .shots { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); }
+  .shots img { width: 100%; border: 1px solid var(--line); border-radius: 12px; display: block; }
+  .shots figure { margin: 0; }
+  .shots figcaption { color: var(--muted); font-size: 13.5px; margin-top: 8px; }
+
+  .privacy { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 28px; }
+  .privacy ul { margin: 0; padding-left: 20px; color: var(--muted); }
+  .privacy li + li { margin-top: 6px; }
+
+  footer { padding: 44px 0 60px; color: var(--muted); font-size: 14px; text-align: center; }
+  footer a { color: var(--muted); }
+  footer nav { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; margin-bottom: 14px; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <img class="logo" src="img/icon-256.png" alt="TweetShot icon" width="88" height="88">
+    <h1>TweetShot</h1>
+    <p class="tagline">An image editor that lives inside the X/Twitter composer. Blur a face, cover a plate, add a caption, crop — then post. Nothing ever leaves your device.</p>
+    <div class="cta">
+      <!-- Once the extension is live, swap this link to the Chrome Web Store URL:
+           https://chromewebstore.google.com/detail/<your-item-id>
+           and change the label to "Add to Chrome". -->
+      <a class="btn primary" href="https://github.com/thegreatLUCY/tweetshot">Get it on GitHub</a>
+      <a class="btn" href="https://github.com/thegreatLUCY/tweetshot/issues">Request a feature</a>
+    </div>
+    <p class="note">Free · No account · No uploads · Works in Chrome and Chromium browsers</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>Edit before you post</h2>
+    <p class="sub">Every tool exists to get a photo ready for the timeline — and to keep some things private.</p>
+    <div class="grid">
+      <div class="card"><div class="ico">🫧</div><h3>Blur &amp; pixelate</h3><p>A brush for faces, plates and anything else that should not be readable. Size and strength are adjustable, and one click is a single dab.</p></div>
+      <div class="card"><div class="ico">🙈</div><h3>Blur faces</h3><p>One-tap detection in browsers that support it — and a clear message plus the brush when they don't.</p></div>
+      <div class="card"><div class="ico">✍️</div><h3>Captions &amp; marks</h3><p>Text with a background chip, arrows, outline or filled boxes, and freehand drawing. Drag any mark to reposition it.</p></div>
+      <div class="card"><div class="ico">✂️</div><h3>Crop &amp; straighten</h3><p>Free drag plus 1:1, 4:5, 16:9, 3:2, 4:3, 9:16 and 1.91:1. Auto picks the largest crop of the shape you chose; Fit corners trims what straightening leaves behind.</p></div>
+      <div class="card"><div class="ico">🎚️</div><h3>Adjust</h3><p>Brightness, contrast, saturation, grayscale, sepia and hue, with presets. Save a look as a recipe and reuse it on the next photo.</p></div>
+      <div class="card"><div class="ico">↔️</div><h3>Compare</h3><p>Drag a divider for a real before/after, or view side by side — and keep editing while you compare.</p></div>
+      <div class="card"><div class="ico">📏</div><h3>Never too big</h3><p>A live file-size estimate and one-click “fit under 5 MB”, so a photo is never rejected for being too large.</p></div>
+      <div class="card"><div class="ico">📦</div><h3>Batches</h3><p>Select several photos, edit them one at a time, and drop them all into the composer together. Cancel and your originals are handed back.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>See it working</h2>
+    <p class="sub">Recorded from the real extension running on x.com.</p>
+    <div class="shots">
+      <figure><img src="img/01-blur.png" alt="The editor open over the composer with a face blurred" loading="lazy"><figcaption>Blur a face without leaving the composer</figcaption></figure>
+      <figure><img src="img/02-compare.png" alt="Before and after compare divider dragged across the photo" loading="lazy"><figcaption>Drag to compare before and after</figcaption></figure>
+      <figure><img src="img/03-mark.png" alt="A caption and a red arrow added to the photo" loading="lazy"><figcaption>Captions, arrows and boxes</figcaption></figure>
+      <figure><img src="img/04-crop.png" alt="A 4:5 crop selection with alignment guides" loading="lazy"><figcaption>Crop for X's formats</figcaption></figure>
+      <figure><img src="img/05-payoff.png" alt="The edited photo attached in the tweet composer" loading="lazy"><figcaption>Use in tweet — it lands in your post</figcaption></figure>
+      <figure><img src="img/06-export.png" alt="The export panel showing a live file size estimate" loading="lazy"><figcaption>A live size estimate for the 5 MB limit</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Private by default</h2>
+    <p class="sub">It is a privacy tool. It would be strange if it phoned home.</p>
+    <div class="privacy">
+      <ul>
+        <li><strong>No uploads.</strong> Every edit happens on your device with the browser's canvas API.</li>
+        <li><strong>No network requests at all.</strong> The fonts are bundled inside the extension.</li>
+        <li><strong>No accounts, no analytics, no tracking, no ads.</strong> Nothing is sold or shared.</li>
+        <li><strong>Only two permissions that matter:</strong> running on x.com / twitter.com — and nowhere else.</li>
+        <li><strong>EXIF is stripped</strong> when you save, including GPS location.</li>
+      </ul>
+      <p style="margin:18px 0 0"><a href="privacy.html">Read the full privacy policy</a></p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <nav>
+    <a href="https://github.com/thegreatLUCY/tweetshot">GitHub</a>
+    <a href="https://github.com/thegreatLUCY/tweetshot/issues">Support &amp; bug reports</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="https://github.com/thegreatLUCY/tweetshot/blob/main/README.md">Documentation</a>
+  </nav>
+  <div>TweetShot is an independent project and is not affiliated with X Corp.</div>
+</footer>
+
+</body>
+</html>

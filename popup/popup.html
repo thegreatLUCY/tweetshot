@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TweetShot</title>
+<style>
+  body { width: 320px; margin: 0; font-family: -apple-system, "Segoe UI", Roboto, sans-serif; background: #15202b; color: #e7e9ea; }
+  .wrap { padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+  h1 { font-size: 16px; margin: 0; }
+  h1 span { color: #1d9bf0; }
+  p { font-size: 12px; color: #8b98a5; margin: 0; }
+  button { background: #1d9bf0; color: #fff; border: 0; border-radius: 999px; padding: 10px; font-weight: 700; cursor: pointer; font-size: 13px; }
+  button.ghost { background: transparent; border: 1px solid #2f3336; color: #e7e9ea; }
+  button:hover { filter: brightness(1.1); }
+  ol { font-size: 12px; color: #cfd9de; padding-left: 18px; margin: 0; display: flex; flex-direction: column; gap: 4px; }
+  kbd { background: #2f3336; border-radius: 4px; padding: 1px 4px; font-size: 11px; }
+  .foot { font-size: 11px; color: #6b7280; text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>🖼️ Tweet<span>Shot</span></h1>
+  <p>Blur faces &amp; plates, add captions and arrows, crop and tweak light — before you post on X.</p>
+  <ol>
+    <li>Compose a tweet on X.com and attach one or more photos</li>
+    <li>Click <b>✎ Edit</b> on a preview (or <b>Edit photo</b> in the toolbar)</li>
+    <li>Edit → <b>Use in tweet</b>. Batches step through image by image.</li>
+  </ol>
+  <button id="openFull">Open full editor</button>
+  <button id="goX" class="ghost">Go to X.com</button>
+  <p class="foot">Shortcuts: <kbd>Ctrl/⌘ Z</kbd> undo · <kbd>Ctrl/⌘ S</kbd> save · <kbd>O</kbd> compare</p>
+</div>
+<script src="popup.js"></script>
+</body>
+</html>

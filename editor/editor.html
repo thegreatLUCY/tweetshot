@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TweetShot — Full Editor</title>
+<link rel="stylesheet" href="../lib/editor-ui.css">
+<link rel="stylesheet" href="editor.css">
+</head>
+<body>
+<header class="page-head">
+  <div class="brand">🖼️ <b>TweetShot</b> <span>full editor — blur • mark • crop • enhance</span></div>
+  <div class="actions">
+    <button class="pbtn" id="openImage">📤 Open image</button>
+    <input id="file" type="file" accept="image/*" multiple hidden>
+  </div>
+</header>
+
+<main>
+  <div id="resume" class="resume" hidden></div>
+  <div id="empty" class="empty">
+    <div class="empty-card">
+      <h1>Edit an image privately</h1>
+      <p>Drop a photo anywhere on this page, or</p>
+      <button class="pbtn primary" id="emptyPick">Choose an image</button>
+      <small>PNG / JPG / WebP. Everything stays on your device — nothing is uploaded.</small>
+    </div>
+  </div>
+  <div id="editorMount"></div>
+</main>
+
+<script src="../lib/editor-core.js"></script>
+<script src="../lib/editor-ui.js"></script>
+<script src="editor.js"></script>
+</body>
+</html>

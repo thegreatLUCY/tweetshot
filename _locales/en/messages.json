@@ -1,0 +1,518 @@
+{
+  "act_apply_crop": {
+    "message": "Apply crop",
+    "description": ""
+  },
+  "act_auto_crop": {
+    "message": "Auto",
+    "description": ""
+  },
+  "act_clear": {
+    "message": "Clear",
+    "description": ""
+  },
+  "act_copy": {
+    "message": "Copy",
+    "description": ""
+  },
+  "act_delete": {
+    "message": "Delete",
+    "description": ""
+  },
+  "act_delete_mark": {
+    "message": "Delete selected",
+    "description": ""
+  },
+  "act_delete_recipe": {
+    "message": "Delete selected look",
+    "description": ""
+  },
+  "act_download": {
+    "message": "Download",
+    "description": ""
+  },
+  "act_export": {
+    "message": "Export",
+    "description": ""
+  },
+  "act_face_blur": {
+    "message": "Blur faces",
+    "description": ""
+  },
+  "act_fit_corners": {
+    "message": "Fit corners",
+    "description": ""
+  },
+  "act_fit_x": {
+    "message": "Fit under 5 MB",
+    "description": ""
+  },
+  "act_flip_h": {
+    "message": "Flip H",
+    "description": ""
+  },
+  "act_flip_v": {
+    "message": "Flip V",
+    "description": ""
+  },
+  "act_save": {
+    "message": "Use in tweet",
+    "description": ""
+  },
+  "act_save_recipe": {
+    "message": "Save",
+    "description": ""
+  },
+  "appDesc": {
+    "message": "Blur, crop, annotate and enhance images right in the X/Twitter composer before you post.",
+    "description": ""
+  },
+  "appName": {
+    "message": "TweetShot — Image Editor for X/Twitter",
+    "description": ""
+  },
+  "app_title": {
+    "message": "TweetShot image editor",
+    "description": ""
+  },
+  "clear_blur": {
+    "message": "Clear all blur",
+    "description": ""
+  },
+  "clear_marks": {
+    "message": "Clear marks",
+    "description": ""
+  },
+  "ctxEdit": {
+    "message": "Edit this image with TweetShot",
+    "description": ""
+  },
+  "estimate_over": {
+    "message": "Over the 5 MB X limit — try Fit under 5 MB",
+    "description": ""
+  },
+  "face_unavailable": {
+    "message": "Face detection is not available in this browser — use the blur brush instead",
+    "description": ""
+  },
+  "filter_bw": {
+    "message": "B&W",
+    "description": ""
+  },
+  "filter_cold": {
+    "message": "Cold",
+    "description": ""
+  },
+  "filter_fade": {
+    "message": "Fade",
+    "description": ""
+  },
+  "filter_normal": {
+    "message": "Normal",
+    "description": ""
+  },
+  "filter_vivid": {
+    "message": "Vivid",
+    "description": ""
+  },
+  "filter_warm": {
+    "message": "Warm",
+    "description": ""
+  },
+  "hint_blur": {
+    "message": "Drag over faces, plates or text. Click once for a dab.",
+    "description": ""
+  },
+  "hint_crop": {
+    "message": "Drag on the photo to select an area, or use Auto for the largest crop of the chosen shape.",
+    "description": ""
+  },
+  "hint_drop": {
+    "message": "Drop an image to load it",
+    "description": ""
+  },
+  "hint_mark": {
+    "message": "Choose a shape, then draw on the photo. Drag text to reposition it.",
+    "description": ""
+  },
+  "hint_rotate": {
+    "message": "Use the buttons for quarter turns or the slider to straighten, then fit the corners.",
+    "description": ""
+  },
+  "label_original": {
+    "message": "Original",
+    "description": ""
+  },
+  "label_recipes": {
+    "message": "Saved looks",
+    "description": ""
+  },
+  "label_tools": {
+    "message": "Tools",
+    "description": ""
+  },
+  "lbl_angle": {
+    "message": "Angle",
+    "description": ""
+  },
+  "lbl_bright": {
+    "message": "Bright",
+    "description": ""
+  },
+  "lbl_color": {
+    "message": "Color",
+    "description": ""
+  },
+  "lbl_contrast": {
+    "message": "Contrast",
+    "description": ""
+  },
+  "lbl_format": {
+    "message": "Format",
+    "description": ""
+  },
+  "lbl_gray": {
+    "message": "Gray",
+    "description": ""
+  },
+  "lbl_hue": {
+    "message": "Hue",
+    "description": ""
+  },
+  "lbl_max_size": {
+    "message": "Max size",
+    "description": ""
+  },
+  "lbl_quality": {
+    "message": "Quality",
+    "description": ""
+  },
+  "lbl_sat": {
+    "message": "Satur.",
+    "description": ""
+  },
+  "lbl_sepia": {
+    "message": "Sepia",
+    "description": ""
+  },
+  "lbl_size": {
+    "message": "Size",
+    "description": ""
+  },
+  "lbl_strength": {
+    "message": "Strength",
+    "description": ""
+  },
+  "lbl_text": {
+    "message": "Text",
+    "description": ""
+  },
+  "lbl_width": {
+    "message": "Width",
+    "description": ""
+  },
+  "mark_arrow": {
+    "message": "Arrow",
+    "description": ""
+  },
+  "mark_bg": {
+    "message": "Chip",
+    "description": ""
+  },
+  "mark_box": {
+    "message": "Box",
+    "description": ""
+  },
+  "mark_default_text": {
+    "message": "Text",
+    "description": ""
+  },
+  "mark_filled": {
+    "message": "Filled",
+    "description": ""
+  },
+  "mark_nobg": {
+    "message": "No chip",
+    "description": ""
+  },
+  "mark_outline": {
+    "message": "Outline",
+    "description": ""
+  },
+  "mark_pen": {
+    "message": "Draw",
+    "description": ""
+  },
+  "mark_text": {
+    "message": "Text",
+    "description": ""
+  },
+  "mode_blur": {
+    "message": "Blur",
+    "description": ""
+  },
+  "mode_pixelate": {
+    "message": "Pixelate",
+    "description": ""
+  },
+  "ph_recipe": {
+    "message": "Name this look",
+    "description": ""
+  },
+  "ph_text": {
+    "message": "Type a caption",
+    "description": ""
+  },
+  "recipe_default": {
+    "message": "Look",
+    "description": ""
+  },
+  "recipe_none": {
+    "message": "No saved look",
+    "description": ""
+  },
+  "reset_filters": {
+    "message": "Reset filters",
+    "description": ""
+  },
+  "size_original": {
+    "message": "Original",
+    "description": ""
+  },
+  "status_auto_crop": {
+    "message": "Auto crop applied",
+    "description": ""
+  },
+  "status_blur_cleared": {
+    "message": "Blur cleared",
+    "description": ""
+  },
+  "status_blur_done": {
+    "message": "Blur applied",
+    "description": ""
+  },
+  "status_compare_side": {
+    "message": "Side by side — you can keep editing.",
+    "description": ""
+  },
+  "status_compare_wipe": {
+    "message": "Drag the ball left / right to compare — you can keep editing.",
+    "description": ""
+  },
+  "status_crop_cleared": {
+    "message": "Crop cleared",
+    "description": ""
+  },
+  "status_cropped": {
+    "message": "Cropped",
+    "description": ""
+  },
+  "status_detecting": {
+    "message": "Looking for faces…",
+    "description": ""
+  },
+  "status_drag_first": {
+    "message": "Drag on the photo first",
+    "description": ""
+  },
+  "status_export_failed": {
+    "message": "Export failed",
+    "description": ""
+  },
+  "status_faces": {
+    "message": "Faces covered",
+    "description": ""
+  },
+  "status_faces_failed": {
+    "message": "Face detection failed",
+    "description": ""
+  },
+  "status_filters_reset": {
+    "message": "Filters reset",
+    "description": ""
+  },
+  "status_fit_corners": {
+    "message": "Corners fitted",
+    "description": ""
+  },
+  "status_fit_fail": {
+    "message": "Still over 5 MB — try a smaller max size",
+    "description": ""
+  },
+  "status_fit_ok": {
+    "message": "Ready to post — under 5 MB",
+    "description": ""
+  },
+  "status_fitting": {
+    "message": "Finding the best size under 5 MB…",
+    "description": ""
+  },
+  "status_hint_adjust": {
+    "message": "Tune light and colour, or save the look as a recipe.",
+    "description": ""
+  },
+  "status_hint_blur": {
+    "message": "Drag on the photo to blur. Strokes apply on release.",
+    "description": ""
+  },
+  "status_hint_crop": {
+    "message": "Drag on the photo, then apply to crop.",
+    "description": ""
+  },
+  "status_hint_mark": {
+    "message": "Pick a shape, then draw. Drag text to move it.",
+    "description": ""
+  },
+  "status_hint_rotate": {
+    "message": "Straighten, flip, then fit the corners.",
+    "description": ""
+  },
+  "status_load_failed": {
+    "message": "Could not load that image",
+    "description": ""
+  },
+  "status_loading": {
+    "message": "Loading…",
+    "description": ""
+  },
+  "status_mark_added": {
+    "message": "Mark added",
+    "description": ""
+  },
+  "status_mark_deleted": {
+    "message": "Mark deleted",
+    "description": ""
+  },
+  "status_marks_cleared": {
+    "message": "Marks cleared",
+    "description": ""
+  },
+  "status_no_faces": {
+    "message": "No faces found",
+    "description": ""
+  },
+  "status_no_mark": {
+    "message": "Select a text mark first",
+    "description": ""
+  },
+  "status_preparing": {
+    "message": "Preparing image…",
+    "description": ""
+  },
+  "status_ready": {
+    "message": "Ready",
+    "description": ""
+  },
+  "status_recipe_applied": {
+    "message": "Applied",
+    "description": ""
+  },
+  "status_redone": {
+    "message": "Redone",
+    "description": ""
+  },
+  "status_reset": {
+    "message": "All edits reset",
+    "description": ""
+  },
+  "status_rotated": {
+    "message": "Rotated",
+    "description": ""
+  },
+  "status_saved": {
+    "message": "Saved",
+    "description": ""
+  },
+  "status_selection": {
+    "message": "Selection",
+    "description": ""
+  },
+  "status_start": {
+    "message": "Drag to edit, then save. Ctrl/⌘+Z to undo.",
+    "description": ""
+  },
+  "status_undone": {
+    "message": "Undone",
+    "description": ""
+  },
+  "title_close": {
+    "message": "Close (Esc)",
+    "description": ""
+  },
+  "title_compare": {
+    "message": "Compare before / after (C)",
+    "description": ""
+  },
+  "title_download": {
+    "message": "Download (Ctrl/⌘+S)",
+    "description": ""
+  },
+  "title_export": {
+    "message": "Output format and size",
+    "description": ""
+  },
+  "title_fit_x": {
+    "message": "Lower quality until the image is under 5 MB",
+    "description": ""
+  },
+  "title_original": {
+    "message": "Press and hold to see the original (O)",
+    "description": ""
+  },
+  "title_redo": {
+    "message": "Redo (Ctrl/⌘+Shift+Z)",
+    "description": ""
+  },
+  "title_reset": {
+    "message": "Reset all edits",
+    "description": ""
+  },
+  "title_theme": {
+    "message": "Switch light / dark",
+    "description": ""
+  },
+  "title_undo": {
+    "message": "Undo (Ctrl/⌘+Z)",
+    "description": ""
+  },
+  "toast_copied": {
+    "message": "Copied to clipboard",
+    "description": ""
+  },
+  "toast_copy_failed": {
+    "message": "Could not copy — try Download",
+    "description": ""
+  },
+  "toast_face_unavailable": {
+    "message": "Face detection is not available in this browser — blur faces by hand",
+    "description": ""
+  },
+  "toast_recipe_deleted": {
+    "message": "Deleted",
+    "description": ""
+  },
+  "toast_recipe_saved": {
+    "message": "Saved",
+    "description": ""
+  },
+  "tool_adjust": {
+    "message": "Adjust",
+    "description": ""
+  },
+  "tool_blur": {
+    "message": "Blur",
+    "description": ""
+  },
+  "tool_crop": {
+    "message": "Crop",
+    "description": ""
+  },
+  "tool_mark": {
+    "message": "Mark",
+    "description": ""
+  },
+  "tool_rotate": {
+    "message": "Rotate",
+    "description": ""
+  }
+}

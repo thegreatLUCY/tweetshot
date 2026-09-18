@@ -106,42 +106,79 @@ const storeIcon = m.icons?.['128'];
 if (!storeIcon) fail('icons.128 is required for the store listing');
 ok('icon sizes match their declared dimensions');
 
-/* ------------------------------------------------------------- remote code */
+/* --------------------------------------- remote code and runtime requests
+ * MV3 forbids remote code. The extension also promises not to transmit
+ * anything, so background calls to hardcoded URLs are out.
+ *
+ * A plain <a href> is deliberately fine: it makes no request until a person
+ * clicks it, so link-only hosts are allowlisted. And `fetch(someVar)` is
+ * allowed on purpose — the right-click / ?src= entry points read an image the
+ * user explicitly asked to edit, which is a read, not a transmission. Those
+ * call sites are listed below so a change to them shows up in CI output.
+ * -------------------------------------------------------------------------- */
 
-const shipJs = [...referenced].filter((f) => f.endsWith('.js'));
-const banned = [
-  [/eval\s*\(/, 'eval()'],
-  [/new\s+Function\s*\(/, 'new Function()'],
+const LINK_HOSTS = new Set(['github.com', 'thegreatlucy.github.io']);
+
+const NET_CALLS = [
+  [/\bfetch\s*\(\s*['"`]https?:\/\//, 'fetch() of a hardcoded remote URL'],
+  [/\bnew\s+XMLHttpRequest\b/, 'XMLHttpRequest'],
+  [/\bnew\s+WebSocket\s*\(/, 'WebSocket'],
+  [/\bnew\s+EventSource\s*\(/, 'EventSource'],
+  [/import\s*\(\s*['"`]https?:\/\//, 'dynamic import of a remote module'],
+  [/\beval\s*\(/, 'eval()'],
+  [/\bnew\s+Function\s*\(/, 'new Function()'],
   [/document\.write\s*\(/, 'document.write()'],
-  [/import\s*\(\s*['"`]https?:/, 'dynamic import of a remote module'],
+  [/<script[^>]+src\s*=\s*["']https?:/i, 'remote <script>'],
+  [/<link[^>]+href\s*=\s*["']https?:[^"']*\.css/i, 'remote stylesheet'],
+  [/url\(\s*['"]?https?:\/\//i, 'remote url()'],
 ];
-for (const f of shipJs) {
-  const src = read(f);
-  for (const [re, label] of banned) if (re.test(src)) fail(`${f} uses ${label} (MV3 forbids remote/dynamic code)`);
-  if (/<script[^>]+src=["']https?:/i.test(src)) fail(`${f} loads a remote script`);
-}
-ok(`${shipJs.length} scripts checked for remote/dynamic code`);
 
-/* ----------------------------------------------- no unexpected network hosts */
+// Scan everything that actually ships, not just what the manifest names —
+// editor.js and popup.js are reached through <script src> and were a blind spot.
+function walk(dir, out = []) {
+  if (!has(dir)) return out;
+  for (const entry of readdirSync(join(ROOT, dir), { withFileTypes: true })) {
+    const p = `${dir}/${entry.name}`;
+    if (entry.isDirectory()) walk(p, out);
+    else out.push(p);
+  }
+  return out;
+}
+const SHIP_DIRS = ['lib', 'content', 'editor', 'popup', 'icons', 'fonts', '_locales'];
+const shipped = ['manifest.json', 'background.js', ...SHIP_DIRS.flatMap((d) => walk(d))];
+const scanned = shipped.filter((f) => /\.(js|css|html|json)$/i.test(f));
+const fetchSites = [];
+for (const f of scanned) {
+  const src = read(f);
+  for (const [re, label] of NET_CALLS) {
+    if (re.test(src)) fail(`${f}: ${label} — remote code and background requests are not allowed`);
+  }
+  src.split('\n').forEach((line, i) => {
+    if (/\bfetch\s*\(/.test(line)) fetchSites.push(`${f}:${i + 1}`);
+  });
+}
+ok(`${scanned.length} shipped files checked for remote code and background requests`);
+if (fetchSites.length) {
+  ok(`${fetchSites.length} user-initiated fetch() call sites (image reads only): ${fetchSites.join(', ')}`);
+}
 
 const allowedHosts = new Set();
 for (const h of m.host_permissions || []) allowedHosts.add(h.replace(/\/\*$/, ''));
 for (const cs of m.content_scripts || []) for (const u of cs.matches || []) allowedHosts.add(u.replace(/\/\*$/, ''));
 
-const scan = [...referenced];
 const hostRe = /https?:\/\/([a-z0-9.-]+)/gi;
 const unexpected = new Set();
-for (const f of scan) {
-  if (!/\.(js|css|html|json)$/i.test(f)) continue;
-  const src = read(f);
-  for (const match of src.matchAll(hostRe)) {
+for (const f of scanned) {
+  for (const match of read(f).matchAll(hostRe)) {
     const host = match[1].toLowerCase();
-    if (host === 'www.w3.org') continue; // svg/xml namespaces
-    if (![...allowedHosts].some((a) => a.includes(host))) unexpected.add(`${host} (in ${f})`);
+    if (host === 'www.w3.org') continue; // svg/xml namespace
+    if (LINK_HOSTS.has(host)) continue; // outbound link only — no request
+    if ([...allowedHosts].some((a) => a.includes(host))) continue;
+    unexpected.add(`${host} (in ${f})`);
   }
 }
-if (unexpected.size) fail(`unexpected network hosts: ${[...unexpected].join(', ')}`);
-ok('no network hosts beyond the declared matches');
+if (unexpected.size) fail(`unexpected hosts: ${[...unexpected].join(', ')}`);
+ok('no hosts beyond the declared matches and the link-only allowlist');
 
 /* ------------------------------------------------------ dev files stay out */
 

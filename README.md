@@ -7,16 +7,17 @@
 <p align="center">
   <strong>An image editor that lives inside the X/Twitter composer.</strong><br>
   Blur a face, cover a plate, add a caption, crop — then post.<br>
-  Everything runs on your device. No uploads, no accounts, no network requests.
+  Everything runs on your device. Nothing is ever uploaded — no accounts, no
+  analytics, no tracking, and no servers of ours.
 </p>
 
 <p align="center">
   <a href="https://github.com/thegreatLUCY/tweetshot/actions/workflows/ci.yml"><img src="https://github.com/thegreatLUCY/tweetshot/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI"></a>
-  <img src="https://img.shields.io/badge/version-1.0.0-1d9bf0" alt="version 1.0.0">
+  <img src="https://img.shields.io/badge/version-1.1.0-1d9bf0" alt="version 1.0.0">
   <img src="https://img.shields.io/badge/manifest-v3-1d9bf0" alt="Manifest V3">
   <img src="https://img.shields.io/badge/tests-28%20passing-2eb872" alt="28 tests passing">
   <img src="https://img.shields.io/badge/uploads-none-2eb872" alt="No uploads">
-  <img src="https://img.shields.io/badge/network%20requests-0-2eb872" alt="Zero network requests">
+  <img src="https://img.shields.io/badge/tracking-none-2eb872" alt="No tracking">
 </p>
 
 <p align="center">
@@ -113,8 +114,8 @@ rulers, and those rulers highlight your crop and blur selection in real time.
 - **Color** — a deep blue-black darkroom dark with X-blue as the single functional
   accent; a "paperproof" light theme mirrors it and follows `prefers-color-scheme`.
 - **Fonts are bundled locally** (~100 KB, both families SIL OFL) and registered
-  with the FontFace API, so the extension makes zero network requests and stays
-  immune to the host page's CSP.
+  with the FontFace API, so the UI needs no remote fonts and stays immune to the
+  host page's CSP.
 
 ---
 
@@ -146,10 +147,14 @@ build** — treat it as a starting point.
 
 ## Privacy
 
-**No uploads, no accounts, no analytics, no ads, and no network requests at all.**
-Every edit happens on your device with the browser's `<canvas>` API; the fonts
-are bundled inside the extension. Saving re-encodes the image, which strips EXIF
-metadata — including GPS location.
+**Nothing is ever uploaded.** No accounts, no analytics, no tracking, no ads, and
+no servers of ours — every edit happens on your device with the browser's
+`<canvas>` API, and the fonts are bundled inside the extension.
+
+The one piece of network activity that can happen is your browser *re-reading an
+image you explicitly asked to edit* — a right-clicked image, or one handed in via
+`?src=`. That reads from the site you are already on and sends nothing anywhere.
+Saving re-encodes the image, which strips EXIF metadata — including GPS.
 
 It runs on `x.com` and `twitter.com` and nowhere else.
 

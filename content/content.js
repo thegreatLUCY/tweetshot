@@ -313,6 +313,7 @@
     if (ok) {
       ui?.close();
       toast('Added to tweet ✓');
+      maybeInviteStar();
       return;
     }
     // Nothing may be lost: copy so a simple paste finishes the job, and only
@@ -407,9 +408,67 @@
       document.body.appendChild(el);
     }
     el.textContent = msg;
+    el.style.pointerEvents = '';
     el.classList.add('show');
     clearTimeout(el.__txeTimer);
     el.__txeTimer = setTimeout(() => el.classList.remove('show'), 2400);
+  }
+
+  /* One-time, never-repeating thank-you after a successful edit. It runs exactly
+   * once ever (flagged in storage) so it can never become nagging — and it is
+   * just a link, so it makes no request unless someone clicks it. */
+  function maybeInviteStar() {
+    try {
+      const store = ext && ext.storage && ext.storage.local;
+      if (!store) return;
+      const run = (alreadyAsked) => {
+        if (alreadyAsked) return;
+        try {
+          store.set({ txeStarNudge: 1 });
+        } catch {
+          /* ignore */
+        }
+        setTimeout(showStarToast, 2200);
+      };
+      const res = store.get('txeStarNudge');
+      if (res && typeof res.then === 'function') {
+        res.then((r) => run(!!(r && r.txeStarNudge))).catch(() => {});
+      } else {
+        store.get('txeStarNudge', (r) => run(!!(r && r.txeStarNudge)));
+      }
+    } catch {
+      /* no storage — skip the nudge entirely */
+    }
+  }
+
+  function showStarToast() {
+    let el = document.querySelector('.txe-toast');
+    if (!el) {
+      el = document.createElement('div');
+      el.className = 'txe-toast';
+      document.body.appendChild(el);
+    }
+    el.textContent = '';
+    el.style.pointerEvents = 'auto';
+    const label = document.createElement('span');
+    label.textContent = 'Open source, and nothing leaves your device. ';
+    const link = document.createElement('a');
+    link.href = window.TXE_REPO_URL || 'https://github.com/thegreatLUCY/tweetshot';
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.textContent = '★ Star TweetShot on GitHub';
+    link.style.color = '#1d9bf0';
+    link.style.fontWeight = '700';
+    link.style.textDecoration = 'none';
+    const caption = document.createElement('span');
+    caption.textContent = ' — it helps a lot.';
+    el.append(label, link, caption);
+    el.classList.add('show');
+    clearTimeout(el.__txeTimer);
+    el.__txeTimer = setTimeout(() => {
+      el.classList.remove('show');
+      el.style.pointerEvents = '';
+    }, 8000);
   }
 
   function downloadFile(file) {

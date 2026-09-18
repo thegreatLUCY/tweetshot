@@ -24,8 +24,11 @@ edit is processed locally on your own device using the browser's built-in
 ## What TweetShot never does
 
 - No analytics, telemetry, tracking pixels or crash reporting.
-- No network requests to any server we control. The extension makes **no network
-  requests at all**.
+- No servers of ours, no analytics and no tracking. Nothing you edit is
+  transmitted anywhere.
+- The only network activity possible is your browser **re-reading an image you
+  explicitly asked to edit** (a right-clicked image, or one supplied by URL).
+  That read goes to the site you are already on; it sends nothing.
 - No reading of your messages, timeline, direct messages, credentials or
   browsing history.
 - No remote code. All JavaScript and all fonts are bundled inside the extension.

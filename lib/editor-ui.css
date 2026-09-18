@@ -404,6 +404,17 @@ svg.txe-ic { width: 16px; height: 16px; display: block; flex: none; }
 .txe-btn.primary { background: var(--blue); border-color: var(--blue); color: var(--blue-ink); box-shadow: 0 6px 18px -8px rgba(29, 155, 240, .9); }
 .txe-btn.primary:hover { filter: brightness(1.07); }
 .txe-btn:disabled { opacity: .45; cursor: default; }
+
+/* quiet "open source" link in the footer — never competes with the primary action */
+.txe-root .txe-star {
+  display: inline-flex; align-items: center; gap: 6px;
+  color: var(--muted); font-size: 12px; font-weight: 600; text-decoration: none;
+  border: 1px solid transparent; border-radius: 9px; padding: 8px 10px;
+  transition: color .14s ease, background .14s ease, border-color .14s ease;
+}
+.txe-root .txe-star svg { width: 14px; height: 14px; }
+.txe-root .txe-star:hover { color: var(--blue); background: var(--raise); border-color: var(--line); }
+.txe-root .txe-star:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
 .txe-btn.txe-unsupported { opacity: .55; border-style: dashed; }
 .txe-btn.safe { border-color: rgba(255, 92, 92, .4); color: var(--safe); }
 
@@ -479,6 +490,7 @@ svg.txe-ic { width: 16px; height: 16px; display: block; flex: none; }
   .txe-ruler { display: none; }
   .txe-stage { grid-template-columns: 1fr; grid-template-rows: auto; }
   .txe-plate { grid-area: 1 / 1; }
+  .txe-root .txe-star span { display: none; } /* icon only on narrow screens */
 }
 
 @media (prefers-reduced-motion: reduce) {

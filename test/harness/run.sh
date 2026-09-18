@@ -60,6 +60,7 @@ run_case "Multi-image batch steps to the next file" "$ROOT/test/harness/drive-ba
 run_case "Every tool edits and undo restores"      "$ROOT/test/harness/drive-tools.js"
 run_case "Use in tweet attaches (native input)"    "$ROOT/test/harness/drive-inject.js"
 run_case "Use in tweet attaches (hoisted input)"   "$ROOT/test/harness/drive-inject-portal.js"
+run_case "Star ask appears once, never again"   "$ROOT/test/harness/drive-star-nudge.js"
 run_case "Survives an invalidated context"         "$ROOT/test/harness/drive-broken-context.js"
 
 say "All browser smoke tests passed"

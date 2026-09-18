@@ -1,8 +1,8 @@
 # Chrome Web Store submission pack
 
 Copy-paste values for https://chrome.google.com/webstore/devconsole
-Everything here matches `manifest.json` v1.0.0. Run `npm run build` first and
-upload `dist/tweetshot-1.0.0.zip`.
+Everything here matches `manifest.json` v1.1.0. Run `npm run build` first and
+upload `dist/tweetshot-1.1.0.zip`.
 
 ---
 
@@ -67,8 +67,9 @@ WHAT YOU CAN DO
 HOW IT WORKS
 
 Everything is drawn with the browser's built-in canvas API, on your machine. The
-extension has no servers: it makes no network requests at all, and the fonts are
-bundled inside it.
+extension has no servers of its own and no analytics, and the fonts are bundled
+inside it. The only network activity possible is your browser re-reading an image
+you explicitly asked to edit — nothing is ever transmitted.
 
 PRIVACY
 
@@ -80,6 +81,12 @@ PRIVACY
 
 TweetShot is built for people who post photos and want to keep some things
 private — a face, a licence plate, an address, a name on a badge.
+
+OPEN SOURCE
+
+The full source is public, and the extension asks for nothing it does not need:
+three permissions and access to x.com / twitter.com only. If it is useful to you,
+a star on GitHub genuinely helps.
 
 Works in Chrome and other Chromium browsers. Also edits any image in the
 full-page editor, even without X open.
@@ -149,7 +156,8 @@ extension runs on no other site.
 **Remote code**
 ```
 No. All JavaScript and all fonts are bundled in the extension package. There are
-no remote scripts, no eval, no dynamic imports and no network requests.
+no remote scripts, no eval, no dynamic imports, and no calls to any server of
+ours.
 ```
 
 **`web_accessible_resources` (bundled fonts)**
@@ -175,6 +183,13 @@ consistently. They are local files; no remote fonts are used.
 | **Home page URL** | `https://thegreatlucy.github.io/tweetshot/` |
 | **Support URL** | `https://github.com/thegreatLUCY/tweetshot/issues` |
 | **Privacy policy URL** (Privacy tab) | `https://thegreatlucy.github.io/tweetshot/privacy.html` |
+
+## 7c. In-product links
+
+The editor footer and the toolbar popup contain one outbound link each: the open
+source repo (Home page URL). They are plain `<a href>` targets — no request is
+made from inside the extension unless the user clicks. No new permissions were
+added for this.
 
 ## 8. Distribution
 
@@ -205,7 +220,7 @@ Note: "Blur faces" is enabled only in browsers that expose the FaceDetector API
 (Chrome on Android/ChromeOS); elsewhere the button explains this and the blur
 brush does the job.
 
-No account, no network requests, and no data leaves the device.
+No account, no analytics, and no data leaves the device.
 ```
 
 ---
@@ -216,13 +231,13 @@ No account, no network requests, and no data leaves the device.
 npm run lint && npm test      # code health
 npm run preflight             # store blockers
 npm run test:artifact         # the packaged build actually works
-npm run build                 # -> dist/tweetshot-1.0.0.zip
+npm run build                 # -> dist/tweetshot-1.1.0.zip
 ```
 
 - [ ] Developer account registered and **$5** fee paid
 - [ ] Developer email verified
 - [ ] `manifest.json` version bumped beyond the last upload
-- [ ] `dist/tweetshot-1.0.0.zip` uploaded
+- [ ] `dist/tweetshot-1.1.0.zip` uploaded
 - [ ] Name / short / detailed description pasted (name matches the manifest)
 - [ ] Category + language set
 - [ ] 1–5 screenshots at exactly 1280×800

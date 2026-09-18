@@ -225,6 +225,19 @@ No account, no analytics, and no data leaves the device.
 
 ---
 
+## Publishing an update
+
+Chrome takes the version from `manifest.json` inside the zip — there is nowhere
+in the dashboard to type it, and the store rejects a version it has already seen.
+
+```bash
+npm run release -- 1.2.0    # bump + gates + build, then prints the upload steps
+```
+
+Then: your item → **Package** → **Upload new package** → **Submit for review**.
+Uploading alone does not publish. The Store listing tab is separate — copy,
+screenshots and promo tiles update without a new package.
+
 ## Submission checklist
 
 ```bash

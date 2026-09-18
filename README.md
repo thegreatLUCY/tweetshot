@@ -237,14 +237,20 @@ in `content/content.js`.
 <summary><b>Releasing</b></summary>
 
 ```bash
-npm run lint && npm test   # code health
-npm run preflight          # store blockers
-npm run test:artifact      # proves the packaged build works
-npm run build              # dist/tweetshot-<version>.zip  -> upload this
+npm run release -- 1.2.0          # bump, verify, build — then it tells you where to upload
+npm run release -- --check 1.2.0  # validate the version only, change nothing
+npm run release -- 1.2.0 --fast   # skip the packaged-browser test
 ```
 
-Bump the version in `manifest.json`, `manifest.firefox.json` and `package.json`
-before each upload — the store rejects a version it has already seen.
+Chrome reads the version from `manifest.json` **inside the uploaded zip** — there
+is nowhere in the dashboard to type it. The store also rejects a version it has
+already seen, so it must increase every time. `npm run release` bumps all three
+copies, keeps the docs in sync, runs lint + tests + preflight + the packaged
+browser suite, and rolls everything back if a gate fails.
+
+Then, in the developer dashboard: your item → **Package** → **Upload new
+package** → **Submit for review**. Uploading alone does not publish. The store
+listing (screenshots, descriptions) is a separate tab and needs no new package.
 
 Store copy (name, descriptions, permission justifications, data-usage answers,
 reviewer test steps) lives in **[STORE_LISTING.md](STORE_LISTING.md)**; the
